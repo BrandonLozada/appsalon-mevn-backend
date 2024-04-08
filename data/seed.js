@@ -21,7 +21,7 @@ async function seedDB() {
     }
 }
 
-async function clearDB(params) {
+async function clearDB() {
     try {
         await Services.deleteMany()
         console.log(colors.red.bold('Se eliminaron los datos'))
