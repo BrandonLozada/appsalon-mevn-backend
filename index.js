@@ -4,6 +4,7 @@ import colors from 'colors'
 import cors from 'cors'
 import { db } from './config/db.js'
 import servicesRoutes from './routes/servicesRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 
 // Environment variables.
 dotenv.config()
@@ -17,17 +18,18 @@ app.use(express.json())
 // Connect to DB.
 db()
 
-// Configure CORS
+// Configure CORS.
+// Review the chapter about this TODO.
 // TODO: Remove the "undefined" item from whiteList array.
 const whiteList = process.argv[2] === '--postman' ? [process.env.FRONTEND_URL, undefined] : [process.env.FRONTEND_URL]
 
 const corsOptions = {
     origin: function(origin, callback) {
         if(whiteList.includes(origin)) {
-            // Allow the request
+            // Allow the request.
             callback(null, true)
         } else {
-            // Reject the request
+            // Reject the request.
             callback(new Error('Error de CORS'))
         }
     }
@@ -37,6 +39,7 @@ app.use(cors(corsOptions))
 
 // Define a route.
 app.use('/api/services', servicesRoutes)
+app.use('/api/auth', authRoutes)
 
 // Define port.
 const PORT = process.env.PORT || 4000
