@@ -1,8 +1,7 @@
 import User from '../models/User.js'
+import { sendEmailVerification } from '../emails/authEmailService.js'
 
 const register = async(req, res) => {
-
-
     // Validate all fields.
     if(Object.values(req.body).includes('')) {
         const error = new Error('Todos los campos son obligatorios.')
@@ -19,7 +18,6 @@ const register = async(req, res) => {
 
     // Validate the password extension.
     const MIN_PASSWORD_LENGTH = 8
-    Object.freeze(MIN_PASSWORD_LENGTH)
     if(password.trim().length < MIN_PASSWORD_LENGTH) {
         const error = new Error(`La contraseña debe contener ${MIN_PASSWORD_LENGTH} caracteres cómo mínimo.`)
         return res.status(400).json({ message: error.message })
@@ -27,7 +25,14 @@ const register = async(req, res) => {
 
     try {
         const user = new User(req.body)
-        await user.save()
+        const result = await user.save()
+
+        const { email, token } = result
+        console.log(result);
+        console.log(email);
+        console.log(token);
+        sendEmailVerification()
+
         res.status(201).json({
             message: 'Te has registrado correctamente, revisa la bandeja de entrada de tu correo electrónico.'
         })
