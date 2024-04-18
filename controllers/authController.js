@@ -107,7 +107,6 @@ const signIn = async(req, res) => {
         })
     }
 
-
     // Compare the password.
     if (await user.checkPassword(password)) {
         res.json({ message: 'Usuario autenticado.' })
