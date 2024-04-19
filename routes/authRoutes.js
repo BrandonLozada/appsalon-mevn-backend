@@ -6,7 +6,7 @@ const router = express.Router()
 // Rutas de autenticación y registro de usuarios.
 
 router.post('/register', register)
-router.post('/verify/:token', verifyAccount)
+router.get('/verify/:token', verifyAccount)
 router.post('/sign-in', signIn)
 
 export default router
