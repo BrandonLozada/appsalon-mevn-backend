@@ -2,7 +2,7 @@ import User from '../models/User.js'
 import { sendEmailVerification } from '../emails/authEmailService.js'
 import { generateJWT } from '../utils/index.js'
 
-const register = async(req, res) => {
+const register = async (req, res) => {
     // Validate the request body.
     if(Object.entries(req.body).length === 0) {
         const error = new Error('Cuerpo de la petición inválido.')
@@ -48,7 +48,7 @@ const register = async(req, res) => {
     }
 }
 
-const verifyAccount = async(req, res) => {
+const verifyAccount = async (req, res) => {
     const { token } = req.params
 
     const user = await User.findOne({ token })
@@ -70,7 +70,7 @@ const verifyAccount = async(req, res) => {
     }
 }
 
-const signIn = async(req, res) => {
+const signIn = async (req, res) => {
     // Validate the request body.
     if(Object.entries(req.body).length === 0) {
         const error = new Error('Cuerpo de la petición inválido.')
@@ -120,8 +120,16 @@ const signIn = async(req, res) => {
     }
 }
 
+const user = async (req, res) => {
+    const { user } = req
+    res.json(
+        user
+    )
+}
+
 export {
     register,
     verifyAccount,
-    signIn
+    signIn,
+    user
 }

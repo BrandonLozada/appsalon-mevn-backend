@@ -20,5 +20,5 @@ export async function sendEmailVerification({ name, email, token }) {
                 <p>Si tu no creaste esta cuenta puedes ignorar este mensaje.</p>`
     })
 
-    console.log('Mnesaje envíado', info.messageId)
+    console.log('Mensaje envíado', info.messageId)
 }
