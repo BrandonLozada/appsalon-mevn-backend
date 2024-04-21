@@ -5,6 +5,7 @@ import cors from 'cors'
 import { db } from './config/db.js'
 import servicesRoutes from './routes/servicesRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import appointmentRoutes from './routes/appointmentRoutes.js'
 
 // Environment variables.
 dotenv.config()
@@ -40,6 +41,7 @@ app.use(cors(corsOptions))
 // Define a route.
 app.use('/api/services', servicesRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/appointments', appointmentRoutes)
 
 // Define port.
 const PORT = process.env.PORT || 4000
