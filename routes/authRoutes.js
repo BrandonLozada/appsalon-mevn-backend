@@ -1,5 +1,5 @@
 import express from 'express'
-import { register, verifyAccount, signIn, user } from '../controllers/authController.js'
+import { register, verifyAccount, signIn, forgotPassword, user  } from '../controllers/authController.js'
 import authMiddleware from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -9,6 +9,7 @@ const router = express.Router()
 router.post('/register', register)
 router.get('/verify/:token', verifyAccount)
 router.post('/sign-in', signIn)
+router.post('/forgot-password', forgotPassword)
 
 
 // Área privada - Requiere un JWT
