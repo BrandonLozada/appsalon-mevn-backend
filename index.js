@@ -21,9 +21,7 @@ app.use(express.json())
 db()
 
 // Configure CORS.
-// Review the chapter about this TODO.
-// TODO: Remove the "undefined" item from whiteList array.
-const whiteList = process.argv[2] === '--postman' ? [process.env.FRONTEND_URL, undefined] : [process.env.FRONTEND_URL]
+const whiteList = process.argv[2] === '--postman' ? [process.env.FRONTEND_URL] : [process.env.FRONTEND_URL]
 
 const corsOptions = {
     origin: function(origin, callback) {

@@ -7,7 +7,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "dev:postman": "nodemon index.js --postman",
     "seed:import": "node data/seed.js --import",
     "seed:destroy": "node data/seed.js --destroy"
   },
